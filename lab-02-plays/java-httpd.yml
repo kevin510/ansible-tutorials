@@ -8,7 +8,7 @@
   tasks:
   
   - apt:
-      pkg: apache2
+      pkg: httpd
       state: installed
     when: ansible_distribution == "RedHat" 
 
