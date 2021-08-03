@@ -1,0 +1,25 @@
+- hosts: node01
+  gather_facts: false
+
+  tasks:
+
+  - name: Install multiple packages
+    yum:
+      pkg: {{ item }}
+      state: installed
+    with_items:
+    - mlocate
+    - strace
+    - java8
+    - php5
+
+  - name: Create Directories
+    file:
+      path: /home/ec2-user/{{ item }}
+      state: directory
+    with_items:
+    - yelp
+    - google
+    - apple
+    - yahoo
+    - allstate
