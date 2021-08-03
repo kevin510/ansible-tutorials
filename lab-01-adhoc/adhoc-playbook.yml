@@ -3,27 +3,26 @@
   become: true
 
   tasks:
-
   - name: Create directory
     file:
       path: /home/ec2-user/testdirAnsible
       state: directory
 
   - copy:
-    src: inventory/ansible-nodes
-    dest: dest=/tmp/ansible-nodes
+      src=inventory/ansible-nodes
+      dest=/tmp/ansible-nodes
 
   - name: Get nodes
-    command: cat /tmp/ansible-nodes
+      command: cat /tmp/ansible-nodes
 
   - yum:
-    pkg: httpd
-    state: installed
+      pkg: httpd
+      state: installed
 
   - yum:
-    pkg: git
-    state: installed
+      pkg: git
+      state: installed
 
   - git:
-    repo: https://github.com/becloudready/prometheus_monitoring.git
-    dest: /tmp version=HEAD
+      repo: https://github.com/becloudready/prometheus_monitoring.git
+      dest: /tmp version=HEAD
