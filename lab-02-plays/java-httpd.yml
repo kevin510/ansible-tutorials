@@ -7,20 +7,9 @@
     httpd_port: 8080
   tasks:
   
-  - apt:
-      pkg: httpd
-      state: installed
-    when: ansible_distribution == "RedHat" 
-
   - yum:
       pkg: httpd
       state: installed
-    when: ansible_distribution == "RedHat"
-
-  - yum:
-      pkg: httpd
-      state: installed
-    when: ansible_distribution == "CentOS"
 
   - name: Start httpd
     service: name=httpd state=started enabled=yes
