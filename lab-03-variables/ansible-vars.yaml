@@ -62,7 +62,7 @@
 
     - name: Change hostname
       hostname:
-        name: {{my_name}} 
+        name: "{{my_name}}" 
 
     - name: Display some varialbes variables/facts known for a host
       debug:
