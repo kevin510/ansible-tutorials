@@ -2,6 +2,12 @@
   gather_facts: true
   vars:
     my_name: Kevin
+
+  vars_prompt:
+    name: user
+    prompt: Enter Username
+    private: no
+    
   tasks:
     - yum:
         pkg: httpd
@@ -20,13 +26,13 @@
       when: ansible_distribution == "Ubuntu"
 
 #    Example that prints the loopback address and gateway for each host
-    # - debug:
-    #     msg: "System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
-    #   when: ansible_product_uuid is defined
+    - debug:
+        msg: "System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
+      when: ansible_product_uuid is defined
 
-    # - debug:
-    #     msg: "System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}"
-    #   when: ansible_default_ipv4.gateway is defined
+    - debug:
+        msg: "System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}"
+      when: ansible_default_ipv4.gateway is defined
 
     - shell: /usr/bin/uptime
       register: result
@@ -37,10 +43,26 @@
     - debug:
         msg: "{{ my_name }}"
       when: my_name == "beCloudReady"
+    
+    - debug:
+        msg: "User input: {{user}}"
 
-    - name: Display all variables/facts known for a host
-      debug:
-        var: hostvars[inventory_hostname]
+    - name: Create file with permissions
+      file:
+        path: /tmp/{{user}}
+        state: touch
+        mode: u=rw,g=r,o=r
+    
+    - debug:
+        var: hostvars[inventory_hostname].ansible_all_ipv4_addresses[0]
+
+    - name: Change hostname
+      hostname:
+        name: {{my_name}} 
+        
+    # - name: Display all variables/facts known for a host
+    #   debug:
+    #     var: hostvars[inventory_hostname]
       
 
     - name: Display some varialbes variables/facts known for a host
