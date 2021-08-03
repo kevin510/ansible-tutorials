@@ -17,7 +17,7 @@
 - hosts: db # Host or Group of Selections
   tasks:
   - name: Install Mysql web server # Naming the task for debug purpose
-    dnf: pkg=mysql state=installed  # Using module ( doing the task )
+    dnf: pkg=mysql-client state=installed  # Using module ( doing the task )
   
 
 - hosts: app
