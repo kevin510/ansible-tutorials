@@ -1,4 +1,4 @@
-- host: web
+- hosts: web
   gather_facts: true
   become: true
 
@@ -9,11 +9,11 @@
       state: directory
 
   - copy:
-      src=inventory/ansible-nodes
-      dest=/tmp/ansible-nodes
+      src: /root/ansible-tutorials/inventory/ansible-nodes
+      dest: /tmp/ansible-nodes
 
   - name: Get nodes
-      command: cat /tmp/ansible-nodes
+    shell: cat /tmp/ansible-nodes
 
   - yum:
       pkg: httpd
