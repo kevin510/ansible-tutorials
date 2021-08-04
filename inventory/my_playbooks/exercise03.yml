@@ -18,16 +18,11 @@
 - hosts: app
   tasks:
 
-  # - name: Change jenkins java options
-  #   lineinfile:
-  #     dest=/etc/syscofig/jenkins
-  #     regexp=^JENKINS_JAVA_OPTIONS=
-  #     line=JENKINS_JAVA_OPTIONS=
-
-  - name: install wget
-    yum:
-      name: wget
-      state: present
+#  - name: Change jenkins java options
+#    lineinfile:
+#      dest=/etc/syscofig/jenkins
+#      regexp=^JENKINS_JAVA_OPTIONS=
+#      line=JENKINS_JAVA_OPTIONS="{{jenkins.JAVA_OPTIONS}}"
 
   - name: download jenkins.repo
     get_url:
