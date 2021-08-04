@@ -15,18 +15,19 @@
       pkg: mysql
       state: installed
 
-hosts: app
+- hosts: app
   tasks:
 
     - name: Add Jenkins Repo
       yum_repository:
         name: jenkins
-        baseurl: http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+        description: jenkins repo
+        baseurl: https://pkg.jenkins.io/redhat-stable/jenkins.repo
 
     - name: Import Jenkins Key
       rpm_key:
         state: present
-        key: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+        key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
 
     - name: Install Java
       yum:
