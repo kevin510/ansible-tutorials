@@ -5,17 +5,17 @@
 
   - name: Install multiple packages
     yum:
-      pkg: {{ item }}
-      state: installed
+      pkg: "{{ item }}"
+      state: present
     with_items:
     - mlocate
     - strace
-    - java8
-    - php5
+    - java-1.8.0-openjdk
+    - php
 
   - name: Create Directories
     file:
-      path: /home/ec2-user/{{ item }}
+      path: "/home/ec2-user/{{ item }}"
       state: directory
     with_items:
     - yelp
