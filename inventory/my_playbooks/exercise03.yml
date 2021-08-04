@@ -18,10 +18,10 @@
 - hosts: app
   tasks:
 
-    - name: install wget
-      yum:
-        name: wget
-        state: present
+  - name: install wget
+    yum:
+      name: wget
+      state: present
         
   - name: download jenkins.repo
     get_url:
