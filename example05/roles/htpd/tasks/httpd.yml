@@ -1,0 +1,17 @@
+
+- service:
+    name: nginx
+    state: stopped
+
+- yum:
+    pkg: httpd
+    state: installed
+
+- name: Start httpd
+  service: name=httpd state=started enabled=yes
+
+- hosts: db # Host or Group of Selections
+tasks:
+- name: Install Mysql web server # Naming the task for debug purpose
+  dnf: pkg=mysql state=installed  # Using module ( doing the task )
+  
