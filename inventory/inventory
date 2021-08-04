@@ -1,6 +1,6 @@
 [webservers]
-ansible_ssh_host=147.182.179.103 ansible_ssh_user=root
+147.182.179.103 ansible_ssh_user=root
 [dbservers]
-ansible_ssh_host=143.198.35.224 ansible_ssh_user=root 
+143.198.35.224 ansible_ssh_user=root 
 [appservers]
-ansible_ssh_host=143.198.35.224 ansible_ssh_user=root 
+143.198.35.224 ansible_ssh_user=root 
