@@ -1,0 +1,39 @@
+- hosts: all
+  become: true
+
+- hosts: web
+  tasks:
+  - name: Install httpd
+    yum:
+      pkg: httpd
+      state: present
+  
+- hosts: db
+  tasks:
+  - name: Install mysql
+    yum:
+      pkg: mysql
+      state: installed
+
+hosts: app
+  tasks:
+
+    - name: Add Jenkins Repo
+      yum_repository:
+        name: jenkins
+        baseurl: http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+
+    - name: Import Jenkins Key
+      rpm_key:
+        state: present
+        key: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+    - name: Install Java
+      yum:
+        pkg: java-1.8.0
+        state: present
+
+    - name: Install jenkins
+      yum:
+        pkg: jenkins
+        state: installed
